@@ -1,4 +1,5 @@
 import Icon from '@/shared/Icon'
+import Link from 'next/link'
 
 export default function page() {
   return (
@@ -56,12 +57,12 @@ export default function page() {
           </form>
         </div>
         <div className="flex justify-center items-center mt-6">
-          <a href="#" target="_blank" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+          <Link href="/auth/register" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
             <span>
               <Icon iconName='person_add' className='fill-blue-500 w-6 h-6'/>
             </span>
             <span className="ml-2">You don't have an account?</span>
-          </a>
+          </Link>
         </div>
       </div>
     </main>

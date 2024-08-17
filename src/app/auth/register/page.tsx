@@ -1,5 +1,6 @@
 import Icon from '@/shared/Icon'
 import './register.css'
+import Link from 'next/link'
 
 export default function page() {
   return (
@@ -75,12 +76,12 @@ export default function page() {
             </form>
           </div>
           <div className="flex justify-center items-center mt-6">
-            <a href="#" target="_blank" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+            <Link href="/auth/login" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
               <span>
                 <Icon iconName='person' className='fill-blue-500 w-6 h-6'/>
               </span>
               <span className="ml-2">Are you a member? Sign in now!</span>
-            </a>
+            </Link>
           </div>
         </div>
       </main>
