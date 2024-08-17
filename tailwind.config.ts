@@ -1,5 +1,17 @@
 import type { Config } from "tailwindcss";
 
+const hexToRgb = (hex: string) => {
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) {
+    hex = hex.split('').map(h => h + h).join('');
+  }
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `${r}, ${g}, ${b}`;
+};
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,6 +30,7 @@ const config: Config = {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#ffffff',
+      black: '#000000',
       blue: {
         100: '#65AFFB',
         200: '#2588ED',
@@ -90,5 +103,24 @@ const config: Config = {
       }
     }
   },
-  plugins: [],
-};export default config;
+  plugins: [
+    function ({ addBase, theme }: { addBase: any; theme: any }){
+      const colors = theme('colors') as Record<string, string | Record<string, string>>;
+      addBase({
+        ':root': Object.keys(colors).reduce((acc, key) => {  // Define variables CSS en :root
+          const value = colors[key];
+          if (typeof value === 'string') {
+            acc[`--color-${key}`] = hexToRgb(value);  // Convierte el color hex a RGB y lo guarda como variable
+          } else {
+            Object.keys(value).forEach(subKey => {
+              acc[`--color-${key}-${subKey}`] = hexToRgb(value[subKey]);  // Maneja colores anidados (como `blue-500`)
+            });
+          }
+          return acc;
+        }, {} as Record<string, string>)
+      });
+    }
+  ],
+};
+
+export default config;

@@ -1,0 +1,8 @@
+.login_img_section {
+  background: linear-gradient(
+    to right bottom,
+    rgb(var(--color-green-500), .7),
+    rgb(var(--color-blue-500), .7)
+    ),
+    url(/img/signup-image.jpg) center center;
+}

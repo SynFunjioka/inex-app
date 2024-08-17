@@ -1,5 +1,4 @@
 import Icon from '@/shared/Icon'
-import React from 'react'
 
 export default function page() {
   return (
