@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.css"
 import { initializeDatabase } from "../db";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +18,7 @@ export default async function RootLayout({
   await initializeDatabase();
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="bg-gray-200">{children}</body>
     </html>
   );
 }
